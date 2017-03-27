@@ -1,0 +1,23 @@
+{
+  "name": "js-workshop",
+  "version": "1.0.0",
+  "description": "Workshop showing ES.Next features",
+  "main": "index.test.js",
+  "scripts": {
+    "start": "jest --watch",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rrdelaney/js-workshop.git"
+  },
+  "author": "Ryan Delaney <rydelan@microsoft.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rrdelaney/js-workshop/issues"
+  },
+  "homepage": "https://github.com/rrdelaney/js-workshop#readme",
+  "dependencies": {
+    "jest": "^19.0.2"
+  }
+}
