@@ -9,31 +9,6 @@ Run this file with Jest
 
 
 
-test('Arrow functions', () => {
-  // Functions can be expressed using the "arrow function" syntax
-  // Shorthand for an anonymous function
-  var myFunction = (num1, num2) => {
-    return num1 + num2
-  }
-
-  expect(myFunction(4, 6)).toBe(10)
-
-  // Arrow functions don't need parens with one parameter
-  var myFunc2 = num => {
-    return num + 6
-  }
-
-  expect(myFunc2(4)).toBe(10)
-
-  // Arrow functions have a shorthand for returning the result
-  //   of one expression
-  var myFunc3 = num => num + 6
-
-  expect(myFunc3(4)).toBe(10)
-})
-
-
-
 test('`let` binding', () => {
   // `let` binds a variable to a variable
   let myBool = true
@@ -44,6 +19,8 @@ test('`let` binding', () => {
   expect(myBool).toBe(false)
 })
 
+
+
 test('`const` binding', () => {
   // `const` binds a variable to a value
   const myBool = true
@@ -53,6 +30,31 @@ test('`const` binding', () => {
   expect(() => {
     myBool = false
   }).toThrow()
+})
+
+
+
+test('Arrow functions', () => {
+  // Functions can be expressed using the "arrow function" syntax
+  // Shorthand for an anonymous function
+  const myFunction = (num1, num2) => {
+    return num1 + num2
+  }
+
+  expect(myFunction(4, 6)).toBe(10)
+
+  // Arrow functions don't need parens with one parameter
+  const myFunc2 = num => {
+    return num + 6
+  }
+
+  expect(myFunc2(4)).toBe(10)
+
+  // Arrow functions have a shorthand for returning the result
+  //   of one expression
+  const myFunc3 = num => num + 6
+
+  expect(myFunc3(4)).toBe(10)
 })
 
 
