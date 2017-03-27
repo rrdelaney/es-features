@@ -245,7 +245,7 @@ test('Rest parameters', () => {
 
 
 
-test('Parameter spread', () => {
+test('Spread arguments', () => {
   const add = (a, b, c) => a + b + c
   const nums = [1, 2, 3]
 
@@ -516,9 +516,13 @@ test('Basic promise', () => {
 
   // .then will always return another promise. Here we return the promise
   //   so our test harness can determine when our test is over
-  return myPromise.then(value => {
-    expect(value).toBe(1)
-  })
+  return myPromise
+    .then(value => {
+      expect(value).toBe(1)
+    })
+    .catch(err => {
+      console.error(err)
+    })
 })
 
 
@@ -591,4 +595,16 @@ test('Await on another async function', async () => {
   const myValue = await getValue()
 
   expect(myValue).toBe(1)
+})
+
+
+
+test('Promise.all', async () => {
+  const p1 = new Promise(resolve => setTimeout(() => resolve(1), 50))
+  const p2 = new Promise(resolve => setTimeout(() => resolve(1), 50))
+  const p3 = new Promise(resolve => setTimeout(() => resolve(1), 500))
+  
+  Promise.all([p1, p2, p3]).then(console.log)
+
+  console.log('me')
 })
