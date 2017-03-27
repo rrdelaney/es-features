@@ -493,3 +493,100 @@ test('Object.assign', () => {
     b: 20
   })
 })
+
+
+
+/*** Promises ***/
+
+
+
+test('Basic promise', () => {
+  // A Promise is a value that will eventually be something. The
+  //   inner value can be accessed using `.then`
+
+  // You usually don't make Promises, you recieve them from a
+  //   framework of library. However, the Promise constructor is
+  //   used like so:
+  const myPromise = new Promise((resolve, reject) => {
+    // Resolve the Promise after 50ms
+    setTimeout(() => resolve(1), 50)
+  })
+
+  // .then will always return another promise. Here we return the promise
+  //   so our test harness can determine when our test is over
+  return myPromise.then(value => {
+    expect(value).toBe(1)
+  })
+})
+
+
+
+test('Promise chaining', () => {
+  const myPromise = new Promise(resolve => setTimeout(() => resolve(1), 50))
+
+  const addThree = x => x + 3
+
+  // You can chain a function on .then
+  return myPromise
+    .then(addThree)
+    .then(value => {
+      expect(value).toBe(4)
+    })
+})
+
+
+
+test('Promise chaining with another Promise', () => {
+  const myPromise = new Promise(resolve => setTimeout(() => resolve(1), 50))
+
+  // You can return another promise in a .then
+  //   the next .then in the chain will wait on it
+  const addThree = value => new Promise(resolve => {
+    setTimeout(() => {
+      resolve(value + 3)
+    }, 50)
+  })
+
+  return myPromise
+    .then(addThree)
+    .then(value => {
+      expect(value).toBe(4)
+    })  
+})
+
+
+
+test('Await / Async', () => {
+  const myPromise = new Promise(resolve => setTimeout(() => resolve(1), 50))
+
+  // You can also "await" on a promise to resolve in the context of an
+  //   async functions. An async function will always return a promise
+  const checkValue = async function () {
+    const value = await myPromise
+    expect(value).toBe(1)
+  }
+
+  return checkValue()
+})
+
+
+
+test('Test in async', async () => {
+  // We can actually run the entire test in the context of an async
+  //   function!
+  const myPromise = new Promise(resolve => setTimeout(() => resolve(1), 50))
+
+  expect(await myPromise).toBe(1)
+})
+
+
+
+test('Await on another async function', async () => {
+  const getValue = async () => {
+    return await new Promise(resolve => setTimeout(() => resolve(1), 50))
+  }
+
+  const myValue = await getValue()
+
+  expect(myValue).toBe(1)
+})
