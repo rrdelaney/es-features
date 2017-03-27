@@ -297,23 +297,96 @@ test('.includes', () => {
 
 
 
-test('String.repeat')
+test('String.repeat', () => {
+  const str = 'abc'
+
+  // You can "repeat" a string
+  const repeated = str.repeat(3)
+  expect(repeated).toBe('abcabcabc')
+})
 
 
 
-test('Array.map')
+test('Array.map', () => {
+  const nums = [1, 2, 3, 4]
+
+  // The `map` operation applies a function to each element in the array
+  //   then returns a new array
+  const numsTimesTwo = nums.map(x => x * 2)
+  expect(numsTimesTwo).toEqual([2, 4, 6, 8])
+
+  const numsPlusTwo = nums.map(x => x + 2)
+  expect(numsPlusTwo).toEqual([3, 4, 5, 6])
+
+  // The argument to map can be any function
+  const square = x => x ** 2
+  const numsSquared = nums.map(square)
+  expect(numsSquared).toEqual([1, 4, 9, 16])
+})
 
 
 
-test('Array.filter')
+test('Array.filter', () => {
+  const nums = [1, 2, 3, 4, 5]
+
+  // `filter` removes items from an array that do not
+  //   meet a certain condition and returns a new array
+  const numsUnder3 = nums.filter(x => x < 3)
+  expect(numsUnder3).toEqual([1, 2])
+
+  // Like map, filter can take any function
+  const isEven = x => x % 2 === 0
+  const evenNums = nums.filter(isEven)
+  expect(evenNums).toEqual([2, 4])
+
+  // We can chain .map and .filter
+  const evenNumsDoubled = nums
+    .filter(x => x % 2 === 0)
+    .map(x => x * 2)
+
+  expect(evenNumsDoubled).toEqual([4, 8])
+})
 
 
 
-test('Array.reduce')
+test('Array.reduce', () => {
+  const nums = [1, 2, 3, 4]
+
+  // `reduce` takes an array and an initial state and produces
+  //   a single value. The "reducing function" takes two parameters:
+  //   the previous state, and the current value in the array. The function
+  //   should return the next state for the reducing function. The reduce
+  //   method also takes an initial state for the reducer. Here it is 0.
+  const numSum = nums.reduce(
+    (previousValue, current) => previousValue + current,
+    0
+  )
+
+  expect(numSum).toBe(10)
+
+  // The next example is to find the max value in an array.
+  //   We start with the smallest possible number in JS. On each
+  //   iteration we compare the previous state and current value
+  //   and return the max of the two.
+  const numMax = nums.reduce(
+    (prev, curr) => curr > prev ? curr : prev,
+    Number.MIN_VALUE
+  )
+
+  expect(numMax).toBe(Math.max(...nums))
+})
 
 
 
-test('Array.forEach')
+test('Array.forEach', () => {
+  const nums = [1, 2, 3, 4]
+
+  // `forEach` performs a function on each item in an array.
+  //   It does not return anything, just performs the action.
+  nums.forEach(x => {
+    expect(x).toBe(x)
+  })
+})
 
 
 
