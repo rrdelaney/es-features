@@ -254,15 +254,32 @@ test('Parameter spread', () => {
 
 
 
-test('Maps')
+test('Maps', () => {
+  // A JS Map is the common Map in other langs. Keys can be
+  //   anything in JS.
+  const m = new Map()
+
+  m.set('key', 'value')
+  m.set(1, 30)
+
+  expect(m.get('key')).toBe('value')
+  expect(m.get(1)).toBe(30)
+  expect(m.size).toBe(2)
+})
 
 
 
-test('Sets')
+test('Sets', () => {
+  // Sets in JS are similar to other langs too
+  const s = new Set()
 
+  s.add('key')
+  expect(s.has('key')).toBe(true)
 
+  expect(s.has('other')).toBe(false)
 
-test('Basic generator functions')
+  expect(s.size).toBe(1)
+})
 
 
 
@@ -390,24 +407,89 @@ test('Array.forEach', () => {
 
 
 
-test('Array.find')
+test('Array.find', () => {
+  const files = [
+    { type: '.docx', name: 'MyFile' },
+    { type: '.pptx', name: 'My Presentation' },
+    { type: '.docx', name: 'Other file' }
+  ]
+
+  // `find` is very similar to filter, but it returns the first item
+  const docx = files.find(f => f.type === '.docx')
+  expect(docx).toEqual({ type: '.docx', name: 'MyFile' })
+})
 
 
 
-test('Array.findIndex')
+test('Array.findIndex', () => {
+  const files = [
+    { type: '.docx', name: 'MyFile' },
+    { type: '.pptx', name: 'My Presentation' },
+    { type: '.docx', name: 'Other file' }
+  ]
+
+  // `findIndex` is returns the index of the first item matching
+  //   matching a predicate
+  const pptxIndex = files.findIndex(f => f.type === '.pptx')
+  expect(pptxIndex).toEqual(1)
+})
 
 
 
-test('Object.keys')
+test('Object.keys', () => {
+  const fs = {
+    file1: { type: '.docx', locked: true },
+    file2: { type: '.docx', locked: false },
+    file3: { type: '.pptx', locked: false }
+  }
+
+  // `Object.keys` returns an array of keys in an object
+  const fsKeys = Object.keys(fs)
+  expect(fsKeys).toEqual(['file1', 'file2', 'file3'])
+})
 
 
 
-test('Object.values')
+test('Object.values', () => {
+  const keyValPairs = {
+    a: 10,
+    b: 20,
+    c: 30
+  }
+
+  // `Object.values` returns an array of values in an object
+  const vals = Object.values(keyValPairs)
+  expect(vals).toEqual([10, 20, 30])
+})
 
 
 
-test('Object.entries')
+test('Object.entries', () => {
+  const keyValPairs = {
+    a: 10,
+    b: 20,
+    c: 30
+  }
+
+  // `Object.entries` returns an array of arrays, where each child
+  //   is [key, values]
+  const [p1, p2, p3] = Object.entries(keyValPairs)
+  expect(p1).toEqual(['a', 10])
+  expect(p2).toEqual(['b', 20])
+  expect(p3).toEqual(['c', 30])
+})
 
 
 
-test('Object.assign')
+test('Object.assign', () => {
+  const a = { a: 10 }
+  const b = { b: 20 }
+
+  // `Object.assign` can merge objects. It has other uses, but this
+  //   is the most common
+  const aAndB = Object.assign({}, a, b)
+  expect(aAndB).toEqual({
+    a: 10,
+    b: 20
+  })
+})
