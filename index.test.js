@@ -1,3 +1,12 @@
+/*
+
+This is a small introduction to some ES2015+ features.
+It doesn't cover generators, promises or modules.
+
+Run this file with Jest
+
+*/
+
 test('Arrow functions', () => {
   // Functions can be expressed using the "arrow function" syntax
   // Shorthand for an anonymous function
@@ -170,6 +179,96 @@ test('Template strings', () => {
 
 
 
-test('Destructuring', () => {
-  
+test('Destructuring objects', () => {
+  const numbers = { ten: 10 }
+
+  // You can "extract" variables from objects
+  const { ten } = numbers
+  expect(ten).toBe(10)
+
+  // This also works in function parameters
+  const add = ({ one, two }) => one + two
+  expect(add({ one: 10, two: 20 })).toBe(30)
+
+  // You can also "rename"
+  const { ten: myNum } = numbers
+  expect(myNum).toBe(10)
+
+  const deepNums = {
+    one: { first: 100, last: 200 }
+  }
+
+  // You can match deeper too
+  const { one: { first, last } } = deepNums
+  expect(first).toBe(100)
+  expect(last).toBe(200)
+})
+
+
+
+test('Destructuring arrays', () => {
+  const nums = [1, 2, 3, 4]
+
+  // You can also "extract" from arrays
+  const [one, two] = nums
+  expect(one).toBe(1)
+  expect(two).toBe(2)
+
+  // This again works with parameters
+  const sum = ([ one, two, three ]) => one + two + three
+  expect(sum([1, 2, 3])).toBe(6)
+})
+
+
+
+test('Default parameters', () => {
+  // Functions can have default parameters
+  const add = (one, two = 10) => one + two
+  expect(add(10)).toBe(20)
+  expect(add(10, 20)).toBe(30)
+})
+
+
+
+test('Rest parameters', () => {
+  // You can capture parameters in a "rest" arrays
+  const print = (...nums) => nums.join(', ')
+  expect(print(1, 2, 3)).toBe('1, 2, 3')
+
+  const addLength = (first, ...rest) => first + rest.length
+  expect(addLength(10, 3, 4, 5)).toBe(13)
+})
+
+
+
+test('Parameter spread', () => {
+  const add = (a, b, c) => a + b + c
+  const nums = [1, 2, 3]
+
+  // You can apply an array as parameters
+  const result = add(...nums)
+  expect(result).toBe(6)
+})
+
+
+
+test('.includes', () => {
+  const numbers = [1, 2, 3, 4, 5, 6]
+
+  // JS now has array checking
+  expect(numbers.includes(4)).toBe(true)
+  expect(numbers.includes(9)).toBe(false)
+
+
+  // Also for strings
+  expect('aaa'.includes('a')).toBe(true)
+  expect('bbb'.includes('a')).toBe(false)
+})
+
+
+
+test('Exponentation operator', () => {
+  // JS has this now
+  const twoToEight = 2 ** 8
+  expect(twoToEight).toBe(256)
 })
