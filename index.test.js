@@ -1,11 +1,13 @@
 /*
-
-This is a small introduction to some ES2015+ features.
-It doesn't cover generators, promises or modules.
-
+This is a small introduction to some ES.next features.
 Run this file with Jest
-
 */
+
+
+
+/*** ES2015 Features ***/
+
+
 
 test('Arrow functions', () => {
   // Functions can be expressed using the "arrow function" syntax
@@ -252,6 +254,34 @@ test('Parameter spread', () => {
 
 
 
+test('Maps')
+
+
+
+test('Sets')
+
+
+
+test('Basic generator functions')
+
+
+
+/*** ES2016 Features ***/
+
+
+
+test('Exponentation operator', () => {
+  // JS has this now
+  const twoToEight = 2 ** 8
+  expect(twoToEight).toBe(256)
+})
+
+
+
+/*** New methods ***/
+
+
+
 test('.includes', () => {
   const numbers = [1, 2, 3, 4, 5, 6]
 
@@ -267,8 +297,44 @@ test('.includes', () => {
 
 
 
-test('Exponentation operator', () => {
-  // JS has this now
-  const twoToEight = 2 ** 8
-  expect(twoToEight).toBe(256)
-})
+test('String.repeat')
+
+
+
+test('Array.map')
+
+
+
+test('Array.filter')
+
+
+
+test('Array.reduce')
+
+
+
+test('Array.forEach')
+
+
+
+test('Array.find')
+
+
+
+test('Array.findIndex')
+
+
+
+test('Object.keys')
+
+
+
+test('Object.values')
+
+
+
+test('Object.entries')
+
+
+
+test('Object.assign')
